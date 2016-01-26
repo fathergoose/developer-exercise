@@ -22,5 +22,7 @@ function toggleContent(){
   var content = this.nextSibling.nextSibling;
   if (content.className == 'accordion-content closed') {
     content.className = 'accordion-content open';
+  } else {
+    content.className = 'accordion-content closed';
   }
 };
