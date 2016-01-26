@@ -22,4 +22,8 @@ $(document).ready(function() {
     ok(sectionContent.length != 0, "sectionsContent isn't empty");
   });
 
+  test("that window.onload is a function", function() {
+    equal(typeof(window.onload), "function", "window.onload is a function");
+  });
+
 });
