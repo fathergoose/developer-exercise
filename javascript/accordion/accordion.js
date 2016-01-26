@@ -20,6 +20,9 @@ window.onload = function() {
 function toggleContent(){
   console.log('hi',this.nextSibling.nextSibling);
   var content = this.nextSibling.nextSibling;
+  for (var i = 0; i < sectionContent.length; i++) {
+    sectionContent[i].className = 'accordion-content closed';
+  }
   if (content.className == 'accordion-content closed') {
     content.className = 'accordion-content open';
   } else {
