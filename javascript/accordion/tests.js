@@ -26,4 +26,8 @@ $(document).ready(function() {
     equal(typeof(window.onload), "function", "window.onload is a function");
   });
 
+  test("sectionContent is hidden onload", function() {
+    ok(document.getElementsByClassName("closed").length != 0, "section conent has class of closed onload" );
+  });
+
 });
