@@ -11,8 +11,11 @@ $(document).ready(function() {
   });
 
   test("actAccordion is an object", function() {
-    equal("object", typeof(actAccordion), "accordion is an object")
-  })
+    equal("object", typeof(actAccordion), "accordion is an object");
+  });
 
-}
-);
+  test("test sectionHeadings", function() {
+    ok(sectionHeadings.length !=  0, "sectionsHeadings isn't empty");
+  });
+
+});
