@@ -11,4 +11,12 @@ window.onload = function() {
   for (var i = 0; i < sectionContent.length; i++) {
     sectionContent[i].className = 'accordion-content closed';
   }
+
+  for (var i = 0; i < sectionHeadings.length; i++) {
+    sectionHeadings[i].getElementsByTagName('a')[0].addEventListener('click', toggleContent, false);
+  }
+};
+
+function toggleContent(){
+  console.log('hi');
 };
