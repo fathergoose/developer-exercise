@@ -18,5 +18,9 @@ window.onload = function() {
 };
 
 function toggleContent(){
-  console.log('hi');
+  console.log('hi',this.nextSibling.nextSibling);
+  var content = this.nextSibling.nextSibling;
+  if (content.className == 'accordion-content closed') {
+    content.className = 'accordion-content open';
+  }
 };
