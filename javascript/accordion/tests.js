@@ -5,4 +5,8 @@ $(document).ready(function(){
     ok(true);
   });
 
+  test("hello exists", function(){
+    ok(hello, "hello exists");
+  });
+
 });
