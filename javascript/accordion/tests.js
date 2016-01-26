@@ -18,4 +18,8 @@ $(document).ready(function() {
     ok(sectionHeadings.length !=  0, "sectionsHeadings isn't empty");
   });
 
+  test("sectionContent fullness", function() {
+    ok(sectionContent.length != 0, "sectionsContent isn't empty");
+  });
+
 });
