@@ -12,7 +12,8 @@
   <div id="quote-container"></div>
   <script type="text/template" id="quote-template">
   <% _.each(quotes, function(quote) { %>
-    <% console.log('this should be a quote:', quote) %>
+    <% console.log('this should be a quote:', quote.attributes) %>
+    <%= quote %>
 
   <% }); %>
   </script>
