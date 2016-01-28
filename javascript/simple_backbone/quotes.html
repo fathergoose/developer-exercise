@@ -12,9 +12,28 @@
   <div id="quote-container"></div>
   <script type="text/template" id="quote-template">
   <% _.each(quotes, function(quote) { %>
-    <% console.log('this should be a quote:', quote.attributes) %>
-    <%= quote.attributes.quote %>
-
+    <table>
+      <tr>
+        <th>Context</th>
+        <th>Source</th>
+        <th>Theme</th>
+        <th>Quote</th>
+      </tr>
+      <tr>
+        <td>
+          <%= quote.attributes.context %>
+        </td>
+        <td>
+          <%= quote.attributes.source %>
+        </td>
+        <td>
+          <%= quote.attributes.theme %>
+        </td>
+        <td>
+          <%= quote.attributes.quote %>
+        </td>
+      </tr>
+    </table>
   <% }); %>
   </script>
 </body>
