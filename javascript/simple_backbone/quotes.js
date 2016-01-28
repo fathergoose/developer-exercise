@@ -14,6 +14,15 @@ var Quote = Backbone.Model.extend({ // eslint-disable-line
 var Quotes = Backbone.Collection.extend({
   model: Quote,
   url: 'https://gist.githubusercontent.com/anonymous/8f61a8733ed7fa41c4ea/raw/1e90fd2741bb6310582e3822f59927eb535f6c73/quotes.json',
+  paginate: function(itemsPerPage, page) {
+    page = page - 1;
+    var collection = this;
+    collection = _(collection.rest(perPage*page()));
+    collection = _(collection.first(perPage));
+    return collection.map( function(model) {
+      return model.toJSON()
+    })
+  }
 });
 
 var QuoteView = Backbone.View.extend({
