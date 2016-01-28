@@ -25,7 +25,7 @@
 */
 var Quote = Backbone.Model.extend({ // eslint-disable-line
   initialize: function() {
-    console.log('new Quote', this); // eslint-disable-line
+//    console.log('new Quote', this); // eslint-disable-line
   },
   defaults: {
     context: '',
@@ -63,7 +63,7 @@ var Quotes = Backbone.Collection.extend({
 //    have render() load the template into the el property
 
 var QuoteView = Backbone.View.extend({
-  el:'#quote-container',
+  el: $('#quote-container'),
   initialize: function() {
     this.collection = new Quotes;
     this.render(); // I may have written render directly into initialize, but this seems the recommended technique
@@ -74,9 +74,10 @@ var QuoteView = Backbone.View.extend({
     var promise = this.collection.fetch();
     promise.done(function() {
       var quoteTemplate = _.template( $("#quote-template").html() ); // use underscore to make a template out of some html gotten using jQuery
-      var quoteHTML = quoteTemplate({quotes : this.collection });  // feed that template our collection
-      this.$el.html( quoteTemplate ); // this view's el-zone needs html... let's use quoteTemplate
-    });
+//      var quoteHTML = quoteTemplate({quotes : that.collection });  // feed that template our collection
+      console.log(that.collection);
+//      this.el.html( quoteTemplate ); // this view's el-zone needs html... let's use quoteTemplate
+    }, that);
   }
 });
 
