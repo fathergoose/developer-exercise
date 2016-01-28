@@ -21,7 +21,7 @@
     - Fetching should happen in the view rendering function
     - Something like `var quoteView = Backbone.View.extend(el:'#somediv', {},{},)`
     - Fetching returns a promise and can be used with `promise.done(function(){do once promise is fufilled})`
-    - `.done()` is a jQuery method for deferred objects allong with `deferred.always()` and `.fail()`
+    - `.done()` is a jQuery method for deferred objects along with `deferred.always()` and `.fail()`
 
   - Views
 
