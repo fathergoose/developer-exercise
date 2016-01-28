@@ -74,9 +74,9 @@ var QuoteView = Backbone.View.extend({
     var promise = this.collection.fetch();
     promise.done(function() {
       var quoteTemplate = _.template( $("#quote-template").html() ); // use underscore to make a template out of some html gotten using jQuery
-//      var quoteHTML = quoteTemplate({quotes : that.collection });  // feed that template our collection
+      var quoteHTML = quoteTemplate({quotes : that.collection.models });  // feed that template our collection
       console.log(that.collection);
-//      this.el.html( quoteTemplate ); // this view's el-zone needs html... let's use quoteTemplate
+      this.el( quoteTemplate ); // this view's el-zone needs html... let's use quoteTemplate
     }, that);
   }
 });
