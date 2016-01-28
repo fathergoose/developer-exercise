@@ -63,7 +63,7 @@ var Quotes = Backbone.Collection.extend({
 //    have render() load the template into the el property
 
 var QuoteView = Backbone.View.extend({
-  el: $('#quote-container'),
+  el: '#quote-container',
   initialize: function() {
     this.collection = new Quotes;
     this.render(); // I may have written render directly into initialize, but this seems the recommended technique
@@ -76,7 +76,7 @@ var QuoteView = Backbone.View.extend({
       var quoteTemplate = _.template( $("#quote-template").html() ); // use underscore to make a template out of some html gotten using jQuery
       var quoteHTML = quoteTemplate({quotes : that.collection.models });  // feed that template our collection
       console.log(that.collection);
-      this.el( quoteTemplate ); // this view's el-zone needs html... let's use quoteTemplate
+      $('#quote-container').html( quoteHTML ); // this view's el-zone needs html... let's use quoteTemplate
     }, that);
   }
 });
