@@ -77,7 +77,7 @@ var QuoteView = Backbone.View.extend({
       var quoteHTML = quoteTemplate({quotes : that.collection.models });  // feed that template our collection
       console.log(that.collection);
       $('#quote-container').html( quoteHTML ); // this view's el-zone needs html... let's use quoteTemplate
-    }, that);
+    });
   }
 });
 
