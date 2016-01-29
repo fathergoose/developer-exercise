@@ -26,18 +26,18 @@ var Quotes = Backbone.Collection.extend({
 
 var QuoteView = Backbone.View.extend({
   el: '#quote-container',
-  initialize: function() {
+  initialize: function(currentPage) {
     this.collection = new Quotes;
-    this.render(); // I may have written render directly into initialize, but this seems the recommended technique
+    this.render(currentPage); // I may have written render directly into initialize, but this seems the recommended technique
     console.log("view initialized", this);
   },
-  render: function() {
+  render: function(currentPage) {
     var that = this;
     var promise = this.collection.fetch();
     promise.done(function() {
       var quoteTemplate = _.template( $("#quote-template").html() ); // use underscore to make a template out of some html gotten using jQuery
-      var quoteHTML = quoteTemplate({quotes : that.collection.models });  // feed that template our collection
-      console.log('that collection', that.collection.paginate(5,1));
+      var quoteHTML = quoteTemplate({quotes : that.collection.paginate(5, 1) });  // feed that template our collection
+      console.log('that collection', that.collection);
       $('#quote-container').html( quoteHTML ); // this view's el-zone needs html... let's use quoteTemplate
     });
   }
