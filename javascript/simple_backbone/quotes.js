@@ -1,4 +1,5 @@
 /* eslint-disable */
+var currentPage;
 
 var Quote = Backbone.Model.extend({ // eslint-disable-line
   initialize: function() {
@@ -28,8 +29,8 @@ var QuoteView = Backbone.View.extend({
   el: '#quote-container',
   initialize: function() {
     this.collection = new Quotes;
-    var firstPage = 1; // feels wrong just to stick a 1 inside of this.render
-    this.render(firstPage); // I may have written render directly into initialize, but this seems the recommended technique
+    currentPage = 1; // feels wrong just to stick a 1 inside of this.render
+    this.render(currentPage); // I may have written render directly into initialize, but this seems the recommended technique
     console.log("view initialized", this);
   },
   render: function(currentPage) {
@@ -48,4 +49,10 @@ var quoteView = new QuoteView;
 // write a function that is called when a button is clicked
 // this function should take current page and return render(currentPage++)
 // looks like i need to know what the current page is
-var currentPage;
+
+var nextPage = function(page) {
+  currentPage++;
+  quoteView.render(currentPage + 1);
+  console.log('currentpageis', currentPage);
+  return currentPage;
+}
