@@ -18,4 +18,10 @@ RSpec.describe Video do
     end
   end
 
+  describe "#url" do
+    it "returns the correct url" do 
+      expect(@video.url).to eq "https://some.url/"
+    end
+  end
+
 end
