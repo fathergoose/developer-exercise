@@ -26,9 +26,10 @@ var Quotes = Backbone.Collection.extend({
 
 var QuoteView = Backbone.View.extend({
   el: '#quote-container',
-  initialize: function(currentPage) {
+  initialize: function() {
     this.collection = new Quotes;
-    this.render(currentPage); // I may have written render directly into initialize, but this seems the recommended technique
+    var firstPage = 1; // feels wrong just to stick a 1 inside of this.render
+    this.render(firstPage); // I may have written render directly into initialize, but this seems the recommended technique
     console.log("view initialized", this);
   },
   render: function(currentPage) {
@@ -36,7 +37,7 @@ var QuoteView = Backbone.View.extend({
     var promise = this.collection.fetch();
     promise.done(function() {
       var quoteTemplate = _.template( $("#quote-template").html() ); // use underscore to make a template out of some html gotten using jQuery
-      var quoteHTML = quoteTemplate({quotes : that.collection.paginate(5, 1) });  // feed that template our collection
+      var quoteHTML = quoteTemplate({quotes : that.collection.paginate(5, currentPage) });  // feed that template our collection
       console.log('that collection', that.collection);
       $('#quote-container').html( quoteHTML ); // this view's el-zone needs html... let's use quoteTemplate
     });
@@ -44,3 +45,7 @@ var QuoteView = Backbone.View.extend({
 });
 
 var quoteView = new QuoteView;
+// write a function that is called when a button is clicked
+// this function should take current page and return render(currentPage++)
+// looks like i need to know what the current page is
+var currentPage;
