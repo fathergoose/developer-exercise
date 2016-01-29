@@ -26,7 +26,7 @@ var Quotes = Backbone.Collection.extend({
 });
 
 var QuoteView = Backbone.View.extend({
-  el: '#quote-container',
+  //el: '#quote-container',
 
   next: function() {
     nextPage();
@@ -38,6 +38,11 @@ var QuoteView = Backbone.View.extend({
     this.render(currentPage); // I may have written render directly into initialize, but this seems the recommended technique
     console.log("view initialized", this);
   },
+  /*
+   Need some seperation between the view that gets the data
+   and the view that pages through the data found in the data page
+   this way the api won't be hit when paging through quotes
+   */
   render: function(currentPage) {
     var that = this;
     var promise = this.collection.fetch();
@@ -54,6 +59,8 @@ var quoteView = new QuoteView;
 // write a function that is called when a button is clicked
 // this function should take current page and return render(currentPage++)
 // looks like i need to know what the current page is
+
+// Thinking there must be a more 'backbone' way to bind these functions
 $(document).ready(function() {
 
   $( '#next-page').click( function() {
