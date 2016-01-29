@@ -18,7 +18,7 @@ var Quotes = Backbone.Collection.extend({
     var collection = this; // point collection to this {instance of Quotes}
     var restOfCollection = _(collection.rest(itemsPerPage*(currentPage - 1))); // drop everything before page n
     var currentPageCollection = _(restOfCollection.first(itemsPerPage)); // take the first itemsPerPage number of items from restOfCollection
-    return currentPageCollection.map( function(model) {
+    return currentPageCollection.map( function(model) { // turn each model into JSON... isn't this JSON already??
       return model.toJSON()
     })
   }
@@ -37,7 +37,7 @@ var QuoteView = Backbone.View.extend({
     promise.done(function() {
       var quoteTemplate = _.template( $("#quote-template").html() ); // use underscore to make a template out of some html gotten using jQuery
       var quoteHTML = quoteTemplate({quotes : that.collection.models });  // feed that template our collection
-      console.log(that.collection);
+      console.log('that collection', that.collection.paginate(5,1));
       $('#quote-container').html( quoteHTML ); // this view's el-zone needs html... let's use quoteTemplate
     });
   }
