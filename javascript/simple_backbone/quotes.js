@@ -27,6 +27,11 @@ var Quotes = Backbone.Collection.extend({
 
 var QuoteView = Backbone.View.extend({
   el: '#quote-container',
+
+  next: function() {
+    nextPage();
+    console.log('this isnt the issue');
+  },
   initialize: function() {
     this.collection = new Quotes;
     currentPage = 1; // feels wrong just to stick a 1 inside of this.render
@@ -49,10 +54,17 @@ var quoteView = new QuoteView;
 // write a function that is called when a button is clicked
 // this function should take current page and return render(currentPage++)
 // looks like i need to know what the current page is
+$(document).ready(function() {
 
-var nextPage = function(page) {
-  currentPage++;
-  quoteView.render(currentPage + 1);
-  console.log('currentpageis', currentPage);
-  return currentPage;
-}
+  $( '#next-page').click( function() {
+    currentPage++;
+    quoteView.render(currentPage);
+    console.log('currentpageis', currentPage);
+  });
+
+  $( '#previous-page').click( function() {
+    currentPage--;
+    quoteView.render(currentPage);
+  });
+
+});
