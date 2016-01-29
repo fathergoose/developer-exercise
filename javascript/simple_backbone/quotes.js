@@ -14,12 +14,11 @@ var Quote = Backbone.Model.extend({ // eslint-disable-line
 var Quotes = Backbone.Collection.extend({
   model: Quote,
   url: 'https://gist.githubusercontent.com/anonymous/8f61a8733ed7fa41c4ea/raw/1e90fd2741bb6310582e3822f59927eb535f6c73/quotes.json',
-  paginate: function(itemsPerPage, page) { // http://stackoverflow.com/questions/10470481/pagination-in-backbone-js
-    page = page - 1; // translate from human to 0 index array
-    var collection = this;
-    collection = _(collection.rest(itemsPerPage*page));
-    collection = _(collection.first(itemsPerPage));
-    return collection.map( function(model) {
+  paginate: function(itemsPerPage, currentPage) { // now heaviliy edited http://stackoverflow.com/questions/10470481/pagination-in-backbone-js
+    var collection = this; // point collection to this {instance of Quotes}
+    var restOfCollection = _(collection.rest(itemsPerPage*(currentPage - 1))); // drop everything before page n
+    var currentPageCollection = _(restOfCollection.first(itemsPerPage)); // take the first itemsPerPage number of items from restOfCollection
+    return currentPageCollection.map( function(model) {
       return model.toJSON()
     })
   }

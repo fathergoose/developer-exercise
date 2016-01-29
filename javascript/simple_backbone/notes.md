@@ -31,3 +31,8 @@
       - Someone just refered to el as a "landing place" for template content
       - I want to have a `render()` called on initialization of the view objects
        - have `render()` load the template into the el property
+
+  - Pagination
+    - **rest:** pass rest and index and it returns the rest of the elements in an array aka tail or drop
+    - **first:** pass first some number (n) and get the first n elements of the array back
+    - **map:** will produce a new array of values by mapping **each** value in a list through function
