@@ -25,6 +25,7 @@ describe YoutubeSearch do
     end
 
     it "should contain Video objects" do
+      expect(@boat_search.results.first).to be_instance_of(Video)
     end
 
 
