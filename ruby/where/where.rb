@@ -1,4 +1,5 @@
 class Array
-  def where
+  def where(what)
+
   end
 end
