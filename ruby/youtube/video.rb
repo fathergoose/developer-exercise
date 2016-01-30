@@ -1,5 +1,5 @@
 class Video
-  attr_accessor :title, :url
+  attr_reader :title, :url
 
   def initialize(title, url)
     @title = title
