@@ -227,6 +227,10 @@ class PlayerTest < Test::Unit::TestCase
   ## I guess the user tests it (wrong answer)
   end
 
+  def test_player_who_is_dealer_can_take_turn
+    assert(@dealer.take_turn)
+  end
+
   def test_hit_should_add_a_card_to_players_hand
     @user.hit!
     assert(@user.hand.cards.first)
