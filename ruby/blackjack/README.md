@@ -12,7 +12,7 @@
 - [ ] Has winner
 
 ## Hand
-- [ ] Has a score ` @score = cards.each { |c| sum = sum + c.value }` or something like that
+- [x] Has a score ` @score = cards.each { |c| sum = sum + c.value }` or something like that
   - I think there is some kind of ruby array sum method
 - [ ] Is blackjack?
 - [ ] Is bust?

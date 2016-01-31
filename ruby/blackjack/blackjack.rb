@@ -215,4 +215,21 @@ class HandTest < Test::Unit::TestCase
     assert_equal 21, @hand.score
   end
 
+  def test_score_with_a_bunch_of_cards
+    @hand.cards << Card.new(:spades, :two, 2)
+    @hand.cards << Card.new(:diamonds, :five, 5)
+    @hand.cards << Card.new(:hearts, :eight, 8)
+    @hand.cards << Card.new(:spades, :ace, [11, 1])
+    assert_equal 16, @hand.score
+  end
+
+  def test_score_with_a_bunch_more_cards
+    @hand.cards << Card.new(:spades, :two, 2)
+    @hand.cards << Card.new(:diamonds, :five, 5)
+    @hand.cards << Card.new(:hearts, :eight, 8)
+    @hand.cards << Card.new(:spades, :ace, [11, 1])
+    @hand.cards << Card.new(:spades, :king, 10)
+    assert_equal 26, @hand.score
+  end
+
 end
