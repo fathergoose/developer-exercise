@@ -87,7 +87,7 @@ class Game
     @turn = 1
   end
 
-  def next_turn
+  def next_turn!
   end
 
 end
@@ -112,7 +112,7 @@ class Player
 
   def hit!
     @hand.cards << @game.deck.deal_card
-    @game.next_turn
+    @game.next_turn!
   end
 
   def stay!
@@ -182,6 +182,10 @@ class GameTest < Test::Unit::TestCase
 
   def test_game_turn_starts_at_one
     assert_equal 1, @game.turn
+  end
+
+  def test_game_next_turn_increments_turn
+    assert_equal 2, @game.next_turn!
   end
 
 end
