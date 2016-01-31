@@ -30,6 +30,7 @@ class Deck
 
   def deal_card
     random = rand(@playable_cards.size)
+    p random
     @playable_cards.delete_at(random)
   end
 
@@ -81,7 +82,7 @@ class DeckTest < Test::Unit::TestCase
   
   def test_dealt_card_should_not_be_included_in_playable_cards
     card = @deck.deal_card
-    assert(@deck.playable_cards.include?(card))
+    assert(!@deck.playable_cards.include?(card))
   end
 
   def test_shuffled_deck_has_52_playable_cards
