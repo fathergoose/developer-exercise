@@ -2,11 +2,11 @@
 
 ## Player
 - [x] Is either a dealer or user (` @dealer `)
-- [ ] has a hand
+- [x] has a hand
 - [ ] has turn actions #hit or #stay
 
 ## Game
-- [ ] Has players
+- [x] Has players
 - [ ] Has a turn state (who's turn is it?)
 - [ ] Has a deck (possibly many if we are at a casino)
 - [ ] Has winner

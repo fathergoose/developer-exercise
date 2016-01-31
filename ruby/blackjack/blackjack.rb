@@ -136,6 +136,10 @@ class GameTest < Test::Unit::TestCase
     assert(@game.players.any? { |p| p.user? })
   end
 
+  def test_game_should_have_a_deck
+    assert(@game.deck)
+  end
+
 end
 
 class PlayerTest < Test::Unit::TestCase
