@@ -4,10 +4,11 @@
 - [x] Is either a dealer or user (` @dealer `)
 - [x] has a hand
 - [x] has turn actions #hit or #stay
+- [ ] may ` take_trun `
 
 ## Game
 - [x] Has players
-- [ ] Has a turn state (who's turn is it?)
+- [x] Has a turn state (who's turn is it?)
 - [x] Has a deck (possibly many if we are at a casino)
 - [ ] Has winner
 
