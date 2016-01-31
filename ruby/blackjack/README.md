@@ -8,7 +8,7 @@
 ## Game
 - [x] Has players
 - [ ] Has a turn state (who's turn is it?)
-- [ ] Has a deck (possibly many if we are at a casino)
+- [x] Has a deck (possibly many if we are at a casino)
 - [ ] Has winner
 
 ## Hand

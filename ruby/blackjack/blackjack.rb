@@ -50,6 +50,33 @@ class Hand
   def initialize
     @cards = []
   end
+
+  def score
+    score = 0
+    @cards.each do |card|
+      if card.name == :ace
+        if self.score_without_aces >= 10
+          score = score + 1
+        else
+          score = score + 11
+        end
+      else
+        score += card.value
+      end
+    end
+    score
+  end
+
+  private
+
+  def score_without_aces
+    score = 0
+    @cards.each do |card|
+      score += card.value unless card.name == :ace
+    end
+    score
+  end
+
 end
 
 class Game
@@ -159,6 +186,17 @@ class PlayerTest < Test::Unit::TestCase
 
   def test_user_shuld_have_a_hand
     assert_equal @user.hand.class, Hand
+  end
+
+end
+
+class HandTest < Test::Unit::TestCase
+  def setup
+    @hand = Hand.new
+  end
+
+  def test_hand_has_score
+    assert(@hand.score)
   end
 
 end
