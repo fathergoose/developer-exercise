@@ -67,7 +67,6 @@ class Hand
     score
   end
 
-  private
 
   def score_without_aces
     score = 0
@@ -197,6 +196,25 @@ class HandTest < Test::Unit::TestCase
 
   def test_hand_has_score
     assert(@hand.score)
+  end
+
+  def test_score_with_two_aces
+    @hand.cards << Card.new(:spades, :ace, [11, 1])
+    @hand.cards << Card.new(:hearts, :ace, [11, 1])
+    assert_equal 12, @hand.score
+  end
+
+  def test_score_with_queen_and_king
+    @hand.cards << Card.new(:spades, :king, 10)
+    @hand.cards << Card.new(:spades, :queen, 10)
+    assert_equal 20, @hand.score
+  end
+
+  def test_score_with_king_queen_and_ace
+    @hand.cards << Card.new(:spades, :king, 10)
+    @hand.cards << Card.new(:spades, :queen, 10)
+    @hand.cards << Card.new(:hearts, :ace, [11, 1])
+    assert_equal 21, @hand.score
   end
 
 end
