@@ -114,6 +114,9 @@ class Player
     @game.next_turn
   end
 
+  def stay
+  end
+
 end
 
 require 'test/unit'
@@ -195,6 +198,12 @@ class PlayerTest < Test::Unit::TestCase
   def test_hit_should_add_a_card_to_players_hand
     @user.hit
     assert(@user.hand.cards.first)
+  end
+
+  def test_stay_should_not_change_a_players_score
+    before_stay = @user.hand.score
+    @user.stay
+    assert_equal before_stay, @user.hand.score
   end
 
 end
