@@ -88,6 +88,11 @@ class Game
   end
 
   def next_turn!
+    if @turn < 1 - @players.length
+      @turn += 1
+    else
+      @turn = 0
+    end
   end
 
 end
@@ -185,7 +190,7 @@ class GameTest < Test::Unit::TestCase
   end
 
   def test_game_next_turn_increments_turn
-    assert_equal 2, @game.next_turn!
+    assert_equal 0, @game.next_turn!
   end
 
 end
