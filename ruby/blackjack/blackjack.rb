@@ -66,7 +66,16 @@ end
 class Player
 
   def initialize(role)
-    @role = role
+    @dealer = true if role == :dealer
+    @dealer = false if role == :user
+  end
+
+  def dealer?
+    @dealer
+  end
+
+  def user?
+    !@dealer
   end
 
 end
@@ -115,7 +124,12 @@ class GameTest < Test::Unit::TestCase
     @game = Game.new
   end
 
-  def test_game_should_have_player_and_dealer
-    assert_equal @game.players.length, 2
+  def test_game_should_have_a_dealer
+    assert(@game.players.any? { |p| p.dealer? })
   end
+
+  def test_game_should_have_a_user
+    assert(@game.players.any? { |p| p.user? })
+  end
+
 end
