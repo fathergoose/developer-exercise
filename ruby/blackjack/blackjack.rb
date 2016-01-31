@@ -81,22 +81,24 @@ class Game
 
   def initialize
     @players = []
-    @players << Player.new(:dealer)
-    @players << Player.new(:user)
+    @players << Player.new(:dealer, self) # players[0]
+    @players << Player.new(:user, self) # players[1]
     @deck = Deck.new
+  end
+
+  def next_turn
   end
 
 end
 
 class Player
-  attr_reader :hand
+  attr_reader :hand, :game
 
-  def initialize(role)
-
+  def initialize(role, game)
     @dealer = true if role == :dealer
     @dealer = false if role == :user
-
     @hand = Hand.new
+    @game = game
   end
 
   def dealer?
@@ -105,6 +107,11 @@ class Player
 
   def user?
     !@dealer
+  end
+
+  def hit
+    @hand.cards << @game.deck.deal_card
+    @game.next_turn
   end
 
 end
@@ -173,8 +180,8 @@ end
 
 class PlayerTest < Test::Unit::TestCase
   def setup
-    @dealer = Player.new(:dealer)
-    @user = Player.new(:user)
+    @dealer = Game.new.players[0]
+    @user = @dealer.game.players[1]
   end
 
   def test_dealer_should_have_a_hand
