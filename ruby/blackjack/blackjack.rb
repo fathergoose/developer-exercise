@@ -140,6 +140,10 @@ class GameTest < Test::Unit::TestCase
     assert(@game.deck)
   end
 
+  def test_game_deck_shuould_be_a_deck
+    assert_equal @game.deck.class, Deck
+  end
+
 end
 
 class PlayerTest < Test::Unit::TestCase
