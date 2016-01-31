@@ -109,12 +109,12 @@ class Player
     !@dealer
   end
 
-  def hit
+  def hit!
     @hand.cards << @game.deck.deal_card
     @game.next_turn
   end
 
-  def stay
+  def stay!
   end
 
 end
@@ -196,13 +196,13 @@ class PlayerTest < Test::Unit::TestCase
   end
 
   def test_hit_should_add_a_card_to_players_hand
-    @user.hit
+    @user.hit!
     assert(@user.hand.cards.first)
   end
 
   def test_stay_should_not_change_a_players_score
     before_stay = @user.hand.score
-    @user.stay
+    @user.stay!
     assert_equal before_stay, @user.hand.score
   end
 
