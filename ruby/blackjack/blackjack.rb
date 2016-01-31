@@ -53,7 +53,7 @@ class Hand
 end
 
 class Game
-  attr_reader :players
+  attr_reader :players, :deck
 
   def initialize
     @players = []
@@ -141,7 +141,7 @@ class GameTest < Test::Unit::TestCase
   end
 
   def test_game_deck_shuould_be_a_deck
-    assert_equal @game.deck.class, Deck
+    assert_equal Deck, @game.deck.class
   end
 
 end
