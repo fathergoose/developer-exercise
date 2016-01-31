@@ -3,7 +3,7 @@
 ## Player
 - [x] Is either a dealer or user (` @dealer `)
 - [x] has a hand
-- [ ] has turn actions #hit or #stay
+- [x] has turn actions #hit or #stay
 
 ## Game
 - [x] Has players

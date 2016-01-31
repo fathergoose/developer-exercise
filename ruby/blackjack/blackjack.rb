@@ -77,13 +77,14 @@ class Hand
 end
 
 class Game
-  attr_reader :players, :deck
+  attr_reader :players, :deck, :turn
 
   def initialize
     @players = []
     @players << Player.new(:dealer, self) # players[0]
     @players << Player.new(:user, self) # players[1]
     @deck = Deck.new
+    @turn = 1
   end
 
   def next_turn
@@ -177,6 +178,10 @@ class GameTest < Test::Unit::TestCase
 
   def test_game_deck_shuould_be_a_deck
     assert_equal Deck, @game.deck.class
+  end
+
+  def test_game_turn_starts_at_one
+    assert_equal 1, @game.turn
   end
 
 end
