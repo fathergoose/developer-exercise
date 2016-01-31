@@ -52,6 +52,25 @@ class Hand
   end
 end
 
+class Game
+  attr_reader :players
+
+  def initialize
+    @players = []
+    @players << Player.new(:dealer)
+    @players << Player.new(:user)
+  end
+
+end
+
+class Player
+
+  def initialize(role)
+    @role = role
+  end
+
+end
+
 require 'test/unit'
 
 class CardTest < Test::Unit::TestCase
