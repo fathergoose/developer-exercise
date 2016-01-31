@@ -185,6 +185,11 @@ class PlayerTest < Test::Unit::TestCase
     assert_equal @user.hand.class, Hand
   end
 
+  def test_hit_should_add_a_card_to_players_hand
+    @user.hit
+    assert(@user.hand.cards.first)
+  end
+
 end
 
 class HandTest < Test::Unit::TestCase
