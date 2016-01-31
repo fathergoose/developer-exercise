@@ -64,10 +64,14 @@ class Game
 end
 
 class Player
+  attr_reader :hand
 
   def initialize(role)
+
     @dealer = true if role == :dealer
     @dealer = false if role == :user
+
+    @hand = Hand.new
   end
 
   def dealer?
