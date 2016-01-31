@@ -136,6 +136,14 @@ class Player
     stay! if player_action == 'k'
   end
 
+  def dealer_logic
+    if @hand.score < 17
+      hit!
+    else
+      stay!
+    end
+  end
+
 end
 
 require 'test/unit'
@@ -228,7 +236,7 @@ class PlayerTest < Test::Unit::TestCase
   end
 
   def test_player_who_is_dealer_can_take_turn
-    assert(@dealer.take_turn)
+    @dealer.take_turn
   end
 
   def test_hit_should_add_a_card_to_players_hand
