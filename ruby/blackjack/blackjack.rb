@@ -59,6 +59,7 @@ class Game
     @players = []
     @players << Player.new(:dealer)
     @players << Player.new(:user)
+    @deck = Deck.new
   end
 
 end
