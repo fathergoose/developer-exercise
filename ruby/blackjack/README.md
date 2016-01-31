@@ -5,6 +5,7 @@
 - [x] has a hand
 - [x] has turn actions #hit or #stay
 - [ ] may ` take_trun `
+- [ ] has statuses playing, bust, blackjack
 
 ## Game
 - [x] Has players
