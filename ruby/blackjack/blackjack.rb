@@ -133,3 +133,19 @@ class GameTest < Test::Unit::TestCase
   end
 
 end
+
+class PlayerTest < Test::Unit::TestCase
+  def setup
+    @dealer = Player.new(:dealer)
+    @user = Player.new(:user)
+  end
+
+  def test_dealer_should_have_a_hand
+    assert_equal @dealer.hand.class, Hand
+  end
+
+  def test_user_shuld_have_a_hand
+    assert_equal @user.hand.class, Hand
+  end
+
+end
