@@ -52,16 +52,14 @@ class Hand
   end
 
   def score
-    score = 0
+    score = self.score_without_aces
     @cards.each do |card|
       if card.name == :ace
-        if self.score_without_aces >= 10
+        if score >= 10
           score = score + 1
         else
           score = score + 11
         end
-      else
-        score += card.value
       end
     end
     score
