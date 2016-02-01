@@ -13,9 +13,9 @@ class Array
 end
 
 # I just realized that I don't believe
-# that this solution returns the orignal
+# this solution returns the orignal
 # hashes, but rather copies of those objects.
 # If that is the case, I would love to see
-# how one can make a ture non-destructive
-# filters. I figure we want to leave
+# how one can make a true non-destructive
+# filter. I figure we want to leave
 # the orignal Array intacat.
