@@ -35,7 +35,7 @@ var QuoteView = Backbone.View.extend({
   initialize: function() {
     this.collection = new Quotes;
     currentPage = 1; // feels wrong just to stick a 1 inside of this.render
-    this.render(currentPage); // I may have written render directly into initialize, but this seems the recommended technique
+    this.render(); // I may have written render directly into initialize, but this seems the recommended technique
     console.log("view initialized", this);
   },
   /*
@@ -43,15 +43,18 @@ var QuoteView = Backbone.View.extend({
    and the view that pages through the data found in the data page
    this way the api won't be hit when paging through quotes
    */
-  render: function(currentPage) {
+  render: function() {
     var that = this;
     var promise = this.collection.fetch();
     promise.done(function() {
-      var quoteTemplate = _.template( $("#quote-template").html() ); // use underscore to make a template out of some html gotten using jQuery
-      var quoteHTML = quoteTemplate({quotes : that.collection.paginate(5, currentPage) });  // feed that template our collection
-      console.log('that collection', that.collection);
-      $('#quote-container').html( quoteHTML ); // this view's el-zone needs html... let's use quoteTemplate
+      that.render_five(1, that.collection)
     });
+  },
+  render_five: function(currentPage, currentCollection) {
+    var quoteTemplate = _.template( $("#quote-template").html() ); // use underscore to make a template out of some html gotten using jQuery
+    var quoteHTML = quoteTemplate({quotes : currentCollection.paginate(5, currentPage) });  // feed that template our collection
+    console.log('that collection', currentCollection);
+    $('#quote-container').html( quoteHTML ); // this view's el-zone needs html... let's use quoteTemplate
   }
 });
 
@@ -65,13 +68,13 @@ $(document).ready(function() {
 
   $( '#next-page').click( function() {
     currentPage++;
-    quoteView.render(currentPage);
+    quoteView.render_five(currentPage, quoteView.collection);
     console.log('currentpageis', currentPage);
   });
 
   $( '#previous-page').click( function() {
     currentPage--;
-    quoteView.render(currentPage);
+    quoteView.render_five(currentPage, quoteView.collection);
   });
 
 });
