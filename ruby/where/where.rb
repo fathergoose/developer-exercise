@@ -1,13 +1,13 @@
 class Array
-  def where(what)
+
+  def where(filters)
     results = self.dup
-    self.each_with_index do |quoteHash|
-      what.each do |key,value|
-        unless what[key] === quoteHash[key]
-          results.delete(quoteHash)
-        end
+    self.each do |item|
+      filters.each do |key,value|
+        results.delete(item) unless filters[key] === quoteHash[key]
       end
     end
-    return results
+    results
   end
+
 end
