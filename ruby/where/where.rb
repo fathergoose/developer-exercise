@@ -11,3 +11,6 @@ class Array
   end
 
 end
+
+# Was easy once I realized this was a filtering
+# problem not a 'find all matches' problem
