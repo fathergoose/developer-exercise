@@ -87,6 +87,14 @@ class Game
     @turn = 1
   end
 
+  def deal_cards
+    2.times do # Weird code, but thats how blackjack works
+      @players.each do |player| # Although dealer should get cards last
+        player.hand.cards << @deck.deal_card
+      end
+    end
+  end
+
   def next_turn!
     if @turn < 1 - @players.length
       @turn += 1
@@ -204,6 +212,17 @@ class GameTest < Test::Unit::TestCase
 
   def test_game_deck_shuould_be_a_deck
     assert_equal Deck, @game.deck.class
+  end
+
+  def test_game_can_deal_cards
+    @game.deal_cards
+  end
+
+  def test_deal_cards_gives_two_cards_to_each_player
+    @game.deal_cards
+    @game.players.each do |player|
+      assert_equal 2, player.hand.cards.count
+    end
   end
 
   def test_game_turn_starts_at_one

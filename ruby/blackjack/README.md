@@ -8,6 +8,7 @@
 - [ ] has statuses playing, bust, blackjack
 
 ## Game
+- [ ] Cards are dealt to players when game starts
 - [x] Has players
 - [x] Has a turn state (who's turn is it?)
 - [x] Has a deck (possibly many if we are at a casino)
