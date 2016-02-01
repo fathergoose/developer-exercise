@@ -28,7 +28,10 @@ describe YoutubeSearch do
       expect(@boat_search.results.first).to be_instance_of(Video)
     end
 
+    it "should only contain three Video objects" do
+      expect(@boat_search.results.length).to eq 3
+    end
 
   end
-  
+
 end

@@ -1,16 +1,18 @@
 require "net/http"
 require "uri"
 require "json"
+require_relative "video.rb"
 
 API_KEY = ENV["YOUTUBE_API_KEY"]
 YOUTUBE_V3_SEARCH = "https://www.googleapis.com/youtube/v3/search"
 YOUTUBE_WATCH = "https://youtube.com/watch?v="
+MAX_RESULTS = 3
 
 class YoutubeSearch
   attr_reader :search_data, :results
-  
+
   def initialize(query)
-    uri = URI.parse("#{YOUTUBE_V3_SEARCH}?part=snippet&q=#{query}&key=#{API_KEY}")
+    uri = URI.parse("#{YOUTUBE_V3_SEARCH}?part=snippet&maxResults=#{MAX_RESULTS}&q=#{query}&key=#{API_KEY}")
     response_hash = JSON.parse(Net::HTTP.get(uri))
     @search_data = response_hash["items"]
     @results = []
