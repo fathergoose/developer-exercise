@@ -127,6 +127,7 @@ class Player
   attr_reader :hand, :game, :staying
 
   def initialize(role, game)
+    @staying = false
     @dealer = true if role == :dealer
     @dealer = false if role == :user
     @hand = Hand.new
@@ -150,7 +151,7 @@ class Player
   end
 
   def take_turn
-    if @staying && self.other_player.staying
+    if @staying && other_player.staying
       @game.determine_winner
     else
       dealer_logic if self.is_dealer?
@@ -159,6 +160,7 @@ class Player
   end
 
   def hit!
+    @staying = false
     @hand.cards << @game.deck.deal_card
     puts "New card"
     puts @hand.cards.last.name
