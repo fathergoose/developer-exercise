@@ -77,13 +77,14 @@ class Hand
 end
 
 class Game
-  attr_reader :players, :deck, :turn
+  attr_reader :players, :deck, :turn, :state
 
   def initialize
     @players = []
     @players << Player.new(:dealer, self) # players[0]
     @players << Player.new(:user, self) # players[1]
     @deck = Deck.new
+    @winner = :none
     @turn = 1
   end
 
@@ -130,10 +131,12 @@ class Player
 
   def hit!
     @hand.cards << @game.deck.deal_card
+    @hand.check_win_or_bust
     @game.next_turn!
   end
 
   def stay!
+    @game.next_turn!
   end
 
   def dealer_logic
@@ -149,6 +152,7 @@ class Player
   private
 
   def user_logic
+    puts "Will you hit(j) or stay(k)"
     player_action = gets.chomp
     hit! if player_action == 'j'
     stay! if player_action == 'k'

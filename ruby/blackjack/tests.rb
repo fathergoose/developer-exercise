@@ -78,6 +78,10 @@ class GameTest < Test::Unit::TestCase
     assert_equal 0, @game.next_turn!
   end
 
+  def test_game_should_have_no_winner_at_first
+    assert_equal :none, @game.winner
+  end
+
 end
 
 class PlayerTest < Test::Unit::TestCase
@@ -146,6 +150,10 @@ class HandTest < Test::Unit::TestCase
 
   def test_hand_has_score
     assert(@hand.score)
+  end
+
+  def test_hand_check_win_or_bust
+    @hand.check_win_or_bust
   end
 
   def test_score_with_two_aces
