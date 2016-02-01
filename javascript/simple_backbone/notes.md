@@ -1,3 +1,12 @@
+# Summary/Reflection #
+That was a great learning experience. Before completing this exercise
+my JavaScript experience was very limited (still is). However,
+after a weekend of letting this one sink in, I was able to sit down
+and solve the previous issue relatively quickly and directly. I
+look forward to applying this newfound JS-foo to an overhaul of my
+on-line music player. I recently heard someone say, "The worst programmer
+I know is myself last year." Agreed, except right now it feels that way
+about last week. :)
 **Backbone JS notes**
   - Uses models and views to provide organization
     - Models:
