@@ -122,7 +122,7 @@ class PlayerTest < Test::Unit::TestCase
   end
 
   def test_other_user_should_return_with_whom_you_are_playing
-    assert_equal @player.other_player, @dealer
+    assert_equal @user.other_player, @dealer
   end
 
   def test_dealer_should_hit_under_17

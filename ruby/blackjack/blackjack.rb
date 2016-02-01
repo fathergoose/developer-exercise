@@ -105,6 +105,9 @@ class Game
     end
   end
 
+  def determine_winner
+  end
+
 end
 
 class Player
@@ -115,6 +118,14 @@ class Player
     @dealer = false if role == :user
     @hand = Hand.new
     @game = game
+  end
+
+  def other_player
+    if is_user?
+      @game.players[0]
+    else
+      @game.players[0]
+    end
   end
 
   def is_dealer?
