@@ -174,13 +174,12 @@ class Player
 
   def dealer_logic
     if @hand.score < 17
-      hit!
       puts "dealer hits"
+      hit!
       'hit'
     else
-      stay!
       puts "dealer is staying"
-      @staying = true
+      stay!
       'stay'
     end
   end
