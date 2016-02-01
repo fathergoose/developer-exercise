@@ -4,7 +4,7 @@ class Array
     results = self.dup
     self.each do |item|
       filters.each do |key,value|
-        results.delete(item) unless filters[key] === quoteHash[key]
+        results.delete(item) unless filters[key] === item[key]
       end
     end
     results
@@ -12,5 +12,10 @@ class Array
 
 end
 
-# Was easy once I realized this was a filtering
-# problem not a 'find all matches' problem
+# I just realized that I don't believe
+# that this solution returns the orignal
+# hashes, but rather copies of those objects.
+# If that is the case, I would love to see
+# how one can make a ture non-destructive
+# filters. I figure we want to leave
+# the orignal Array intacat.
