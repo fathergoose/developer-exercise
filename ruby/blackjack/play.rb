@@ -26,7 +26,7 @@ end
 
 @game.players[@game.turn].take_turn while @game.winner == :none
 
-puts "##Score##"
+puts "##Final Score##"
 puts "Dealer: #{@game.players[0].hand.score}"
 puts "You: #{@game.players[1].hand.score}"
 
