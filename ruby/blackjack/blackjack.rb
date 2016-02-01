@@ -136,20 +136,22 @@ class Player
   def stay!
   end
 
+  def dealer_logic
+    if @hand.score < 17
+      hit!
+      'hit'
+    else
+      stay!
+      'stay'
+    end
+  end
+
   private
 
   def user_logic
     player_action = gets.chomp
     hit! if player_action == 'j'
     stay! if player_action == 'k'
-  end
-
-  def dealer_logic
-    if @hand.score < 17
-      hit!
-    else
-      stay!
-    end
   end
 
 end
@@ -221,7 +223,7 @@ class GameTest < Test::Unit::TestCase
   def test_deal_cards_gives_two_cards_to_each_player
     @game.deal_cards
     @game.players.each do |player|
-      assert_equal 2, player.hand.cards.count
+      assert_equal 2, player.hand.cards.count # use count for readablity
     end
   end
 
@@ -256,6 +258,29 @@ class PlayerTest < Test::Unit::TestCase
 
   def test_player_who_is_dealer_can_take_turn
     @dealer.take_turn
+  end
+
+  def test_dealer_should_hit_under_17
+    @dealer.hand.cards << Card.new(:spades, :two, 2)
+    @dealer.hand.cards << Card.new(:diamonds, :five, 5)
+    @dealer.hand.cards << Card.new(:hearts, :eight, 8)
+    @dealer.hand.cards << Card.new(:spades, :ace, [11, 1])
+    assert_equal 'hit', @dealer.dealer_logic
+  end
+
+  def test_dealer_should_stay_at_17
+    @dealer.hand.cards << Card.new(:spades, :two, 2)
+    @dealer.hand.cards << Card.new(:diamonds, :five, 5)
+    @dealer.hand.cards << Card.new(:hearts, :eight, 8)
+    @dealer.hand.cards << Card.new(:spades, :ace, [11, 1])
+    @dealer.hand.cards << Card.new(:diamonds, :ace, [11, 1])
+    assert_equal 'stay', @dealer.dealer_logic
+  end
+
+  def test_dealer_should_stay_over_17
+    @dealer.hand.cards << Card.new(:spades, :king, 10)
+    @dealer.hand.cards << Card.new(:spades, :queen, 10)
+    assert_equal 'stay', @dealer.dealer_logic
   end
 
   def test_hit_should_add_a_card_to_players_hand
