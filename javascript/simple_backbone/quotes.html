@@ -5,8 +5,41 @@
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+  <script src="quotes.js" type="text/javascript"></script>
 </head>
 <body>
+  <button id="previous-page">Previous</button>
+  <button id="next-page">Next</button>
+  <div id="quote-filter"></div>
+  <div id="quote-container"></div>
+  <script type="text/template" id="quote-template">
 
+    <table>
+      <tr>
+        <th>Context</th>
+        <th>Source</th>
+        <th>Theme</th>
+        <th>Quote</th>
+      </tr>
+  <% _.each(quotes, function(quote) { %>
+
+      <tr>
+        <td>
+          <%= quote.context %>
+        </td>
+        <td>
+          <%= quote.source %>
+        </td>
+        <td>
+          <%= quote.theme %>
+        </td>
+        <td>
+          <%= quote.quote %>
+        </td>
+      </tr>
+  <% }); %>
+</table>
+  <span id=pageNumber>Page: <%= currentPage %></span>
+  </script>
 </body>
 </html>
