@@ -110,7 +110,7 @@ class Game
     user_score = @players[1].hand.score
     if dealer_score == user_score
       puts "TIE! No plan for this"
-      @winner = tie
+      @winner = :tie
     end
     if dealer_score > user_score && dealer_score <= 21
       puts "dealer wins"
@@ -160,7 +160,9 @@ class Player
 
   def hit!
     @hand.cards << @game.deck.deal_card
+    puts "New card"
     puts @hand.cards.last.name
+    puts "Score: #{@hand.score}"
     check_win_or_bust
     @game.next_turn!
   end
@@ -185,11 +187,10 @@ class Player
 
   def check_win_or_bust
     if @hand.score > 21
-      @game.next_turn!
-      @game.winner = @game.players[@game.turn]
+      @game.winner = other_player
     end # elsif is hard to read
     if @hand.score == 21
-      @game.winner = @game.players[@game.turn]
+      @game.winner = self
     end
   end
 
