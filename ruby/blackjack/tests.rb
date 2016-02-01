@@ -141,6 +141,15 @@ class PlayerTest < Test::Unit::TestCase
     assert_equal before_stay, @user.hand.score
   end
 
+  def test_stay_should_set_staying_to_true
+    @user.stay!
+    assert(@user.staying)
+  end
+
+  def test_check_win_or_bust
+    @user.check_win_or_bust
+  end
+
 end
 
 class HandTest < Test::Unit::TestCase
@@ -150,10 +159,6 @@ class HandTest < Test::Unit::TestCase
 
   def test_hand_has_score
     assert(@hand.score)
-  end
-
-  def test_hand_check_win_or_bust
-    @hand.check_win_or_bust
   end
 
   def test_score_with_two_aces
