@@ -198,6 +198,7 @@ class HandTest < Test::Unit::TestCase
   def test_score_with_ace_and_king
     @hand.cards << Card.new(:spades, :ace, [11, 1])
     @hand.cards << Card.new(:clubs, :king, 10)
+    assert_equal 21, @hand.score
   end
 
   def test_score_with_queen_and_king

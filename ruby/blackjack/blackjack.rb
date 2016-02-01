@@ -55,7 +55,7 @@ class Hand
     score = self.score_without_aces
     @cards.each do |card|
       if card.name == :ace
-        if score >= 10
+        if score > 10
           score = score + 1
         else
           score = score + 11
@@ -150,7 +150,7 @@ class Player
   end
 
   def take_turn
-    if @staying && other_player.staying
+    if @staying && self.other_player.staying
       @game.determine_winner
     else
       dealer_logic if self.is_dealer?
@@ -185,7 +185,7 @@ class Player
   end
 
   def check_win_or_bust
-    if @hand.score > 21
+    if @hand.score >= 21
       @game.winner = other_player
     end # elsif is hard to read
     if @hand.score == 21
@@ -193,7 +193,6 @@ class Player
     end
   end
 
-  private
 
   def user_logic
     unless @staying
