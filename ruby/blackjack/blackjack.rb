@@ -145,9 +145,11 @@ class Player
     if @hand.score < 17
       hit!
       'hit'
+      puts "dealer hits"
     else
       stay!
       'stay'
+      puts "dealer is staying"
     end
   end
 

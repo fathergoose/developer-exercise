@@ -8,9 +8,9 @@ gets
 @game.deal_cards
 
 puts "Your hand"
-puts @game.players[1].hand.cards
-puts "The dealer's hand"
-puts @game.players[0].hand.cards.first+" <hidden-card>"
+@game.players[1].hand.cards.each { |c| puts c.name }
+puts "The dealer's showing card"
+puts @game.players[0].hand.cards.first.name
 
 if @game.players[1].hand.score == 21
   puts "Blackjack! You win!"
@@ -24,4 +24,6 @@ elsif @game.players[0].hand.score == 21
   exit
 end
 
-@game.players[@game.turn].take_trun while @game.winner == :none
+@game.players[@game.turn].take_turn while @game.winner == :none
+
+puts "The winner is" + @game.winner.to_s
