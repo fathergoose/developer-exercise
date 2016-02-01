@@ -106,6 +106,19 @@ class Game
   end
 
   def determine_winner
+    dealer_score = @players[0].hand.score
+    user_score = @players[1].hand.score
+    if dealer_score == user_score
+      puts "TIE! No plan for this"
+      @winner = tie
+    end
+    if dealer_score > user_score && dealer_score <= 21
+      puts "dealer wins"
+      @winner = @players[0]
+    else
+      puts "You win!!!"
+      @winner = @players[1]
+    end
   end
 
 end
