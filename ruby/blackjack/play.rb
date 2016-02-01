@@ -26,4 +26,5 @@ end
 
 @game.players[@game.turn].take_turn while @game.winner == :none
 
-puts "The winner is" + @game.winner.to_s
+puts "House wins again" if @game.winner.is_dealer?
+puts "You are a winner" if @game.winner.is_user?

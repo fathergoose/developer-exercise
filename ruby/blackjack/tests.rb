@@ -41,6 +41,8 @@ end
 class GameTest < Test::Unit::TestCase
   def setup
     @game = Game.new
+    @user = @game.players[1]
+    @dealer = @game.players[0]
   end
 
   def test_game_should_have_a_dealer
@@ -82,6 +84,18 @@ class GameTest < Test::Unit::TestCase
     assert_equal :none, @game.winner
   end
 
+  def test_determine_winner_should_the_player_who_wins_as_winner
+    @user.hand.cards << Card.new(:spades, :two, 2)
+    @user.hand.cards << Card.new(:diamonds, :five, 5)
+    @user.hand.cards << Card.new(:hearts, :eight, 8)
+    @user.hand.cards << Card.new(:spades, :ace, [11, 1])
+    @dealer.hand.cards << Card.new(:spades, :king, 10)
+    @dealer.hand.cards << Card.new(:spades, :queen, 10)
+    @dealer.hand.cards << Card.new(:hearts, :ace, [11, 1])
+    @game.determine_winner
+    assert_equal @dealer, @game.winner
+  end
+
 end
 
 class PlayerTest < Test::Unit::TestCase
@@ -105,6 +119,10 @@ class PlayerTest < Test::Unit::TestCase
 
   def test_player_who_is_dealer_can_take_turn
     @dealer.take_turn
+  end
+
+  def test_other_user_should_return_with_whom_you_are_playing
+    assert_equal @player.other_player, @dealer
   end
 
   def test_dealer_should_hit_under_17
@@ -175,6 +193,11 @@ class HandTest < Test::Unit::TestCase
     @hand.cards << Card.new(:spades, :ace, [11, 1])
     @hand.cards << Card.new(:hearts, :ace, [11, 1])
     assert_equal 12, @hand.score
+  end
+
+  def test_score_with_ace_and_king
+    @hand.cards << Card.new(:spades, :ace, [11, 1])
+    @hand.cards << Card.new(:clubs, :king, 10)
   end
 
   def test_score_with_queen_and_king

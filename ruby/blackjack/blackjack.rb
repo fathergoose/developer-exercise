@@ -30,7 +30,7 @@ class Deck
 
   def deal_card
     random = rand(@playable_cards.size)
-    p random
+    # p random
     @playable_cards.delete_at(random)
   end
 
@@ -126,30 +126,36 @@ class Player
   end
 
   def take_turn
-    dealer_logic if self.is_dealer?
-    user_logic if self.is_user?
+    if @staying && other_player.staying
+      @game.determine_winner
+    else
+      dealer_logic if self.is_dealer?
+      user_logic if self.is_user?
+    end
   end
 
   def hit!
     @hand.cards << @game.deck.deal_card
+    puts @hand.cards.last.name
     check_win_or_bust
     @game.next_turn!
   end
 
   def stay!
-    @game.next_turn!
     @staying = true
+    @game.next_turn!
   end
 
   def dealer_logic
     if @hand.score < 17
       hit!
-      'hit'
       puts "dealer hits"
+      'hit'
     else
       stay!
-      'stay'
       puts "dealer is staying"
+      @staying = true
+      'stay'
     end
   end
 
