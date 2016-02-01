@@ -1,10 +1,10 @@
 class Array
   def where(what)
-    results = []
-    self.each do |quoteHash|
+    results = self.dup
+    self.each_with_index do |quoteHash|
       what.each do |key,value|
-        if what[key] === quoteHash[key]
-          results << quoteHash
+        unless what[key] === quoteHash[key]
+          results.delete(quoteHash)
         end
       end
     end
