@@ -77,7 +77,8 @@ class Hand
 end
 
 class Game
-  attr_reader :players, :deck, :turn, :winner
+  attr_accessor :winner
+  attr_reader :players, :deck, :turn
 
   def initialize
     @players = []
@@ -151,6 +152,13 @@ class Player
   end
 
   def check_win_or_bust
+    if @hand.score > 21
+      @game.next_turn!
+      @game.winner = @game.players[@game.turn]
+    end # elsif is hard to read
+    if @hand.score == 21
+      @game.winner = @game.players[@game.turn]
+    end
   end
 
   private

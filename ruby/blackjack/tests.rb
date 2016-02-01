@@ -150,6 +150,16 @@ class PlayerTest < Test::Unit::TestCase
     @user.check_win_or_bust
   end
 
+  def test_check_win_or_bust_sets_dealer_as_winner_when_score_is_over_21
+    @user.hand.cards << Card.new(:spades, :two, 2)
+    @user.hand.cards << Card.new(:diamonds, :five, 5)
+    @user.hand.cards << Card.new(:hearts, :eight, 8)
+    @user.hand.cards << Card.new(:spades, :ace, [11, 1])
+    @user.hand.cards << Card.new(:spades, :king, 10)
+    @user.check_win_or_bust
+    assert_equal @dealer, @user.game.winner
+  end
+
 end
 
 class HandTest < Test::Unit::TestCase
